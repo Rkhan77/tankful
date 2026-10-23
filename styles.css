@@ -40,6 +40,11 @@ footer {
   margin-inline: auto;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+}
+
 .site-header {
   min-height: 86px;
   display: flex;
@@ -89,11 +94,13 @@ footer {
 }
 
 .hero {
+  order: 0;
   min-height: 385px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 40px;
+  margin-bottom: 72px;
   overflow: hidden;
 }
 
@@ -349,11 +356,13 @@ h1 {
 .wheel-right { right: 25px; }
 
 .calculator-shell {
+  order: -1;
   display: grid;
   grid-template-columns: 1.5fr 0.78fr;
   gap: 0;
   align-items: stretch;
-  margin-bottom: 112px;
+  margin-top: 48px;
+  margin-bottom: 40px;
   border-radius: 18px;
   box-shadow: var(--shadow);
 }
@@ -869,7 +878,8 @@ footer p {
   }
 
   .calculator-shell {
-    margin-bottom: 80px;
+    margin-top: 26px;
+    margin-bottom: 28px;
   }
 
   .how-it-works {
