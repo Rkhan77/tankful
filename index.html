@@ -15,8 +15,8 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=2" />
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css?v=3" />
+    <script src="script.js?v=2" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -155,12 +155,36 @@
           </div>
 
           <div class="result-content" id="result-content" hidden>
-            <p class="step-label">Your fuel economy</p>
+            <div class="result-kicker">
+              <p class="step-label">Your fuel economy</p>
+              <span class="rating-badge" id="rating-badge">Efficient</span>
+            </div>
             <div class="primary-result">
               <strong id="efficiency-result">0.0</strong>
               <span>km/L</span>
             </div>
-            <p class="result-message" id="result-message"></p>
+            <p class="consumption-result"><span id="consumption-result">0.0</span> L/100 km</p>
+
+            <div class="efficiency-scale" aria-label="Fuel efficiency scale">
+              <div class="scale-track" aria-hidden="true">
+                <span class="scale-thirsty"></span>
+                <span class="scale-typical"></span>
+                <span class="scale-efficient"></span>
+                <span class="scale-excellent"></span>
+                <i class="scale-marker" id="scale-marker"></i>
+              </div>
+              <div class="scale-labels" aria-hidden="true">
+                <span>Thirsty</span>
+                <span>Typical</span>
+                <span>Efficient</span>
+                <span>Excellent</span>
+              </div>
+            </div>
+
+            <div class="advice-block">
+              <span>Your next move</span>
+              <p class="result-message" id="result-message"></p>
+            </div>
 
             <div class="range-block">
               <div class="range-icon" aria-hidden="true">
@@ -181,6 +205,32 @@
             </button>
           </div>
         </aside>
+
+        <div class="benchmark-note">
+          <strong>How the scale works</strong>
+          <p>
+            A practical passenger-car guide anchored to the Australian fleet average of
+            11.1 L/100 km (about 9.0 km/L). Vehicle size, traffic, terrain and load all matter,
+            so compare your result with similar vehicles and your car's official label.
+          </p>
+          <div class="source-links">
+            <a
+              href="https://www.abs.gov.au/statistics/industry/tourism-and-transport/survey-motor-vehicle-use-australia/latest-release"
+              target="_blank"
+              rel="noreferrer"
+            >ABS fleet data</a>
+            <a
+              href="https://greenvehicleguide.gov.au/pages/ToolsAndCalculators/FuelConsumptionLabel"
+              target="_blank"
+              rel="noreferrer"
+            >Green Vehicle Guide</a>
+            <a
+              href="https://www.energy.gov.au/households/transport"
+              target="_blank"
+              rel="noreferrer"
+            >Fuel-saving advice</a>
+          </div>
+        </div>
       </section>
 
       <section class="how-it-works" aria-labelledby="how-title">
