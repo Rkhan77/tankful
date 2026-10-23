@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A simple fuel economy calculator for working out kilometres per litre and estimated full-tank range."
+    />
+    <meta name="theme-color" content="#f4f1e8" />
+    <title>Tankful — Fuel Economy Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Tankful home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" role="img">
+            <path d="M7 7h13v20H7z" />
+            <path d="M20 11h3l3 4v8a2 2 0 0 1-4 0v-5h-2" />
+            <path d="M10 10h7v5h-7z" class="brand-mark-window" />
+          </svg>
+        </span>
+        <span>Tankful</span>
+      </a>
+      <span class="header-note">Fuel economy, made easy.</span>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> Quick fuel check</p>
+          <h1 id="page-title">How far does your car really go?</h1>
+          <p class="intro">
+            Enter the numbers from your latest fill-up and get your real-world fuel economy in seconds.
+          </p>
+        </div>
+
+        <div class="road-scene" aria-hidden="true">
+          <div class="sun"></div>
+          <div class="cloud cloud-one"><i></i><i></i><i></i></div>
+          <div class="cloud cloud-two"><i></i><i></i><i></i></div>
+          <div class="hill hill-back"></div>
+          <div class="hill hill-front"></div>
+          <div class="car">
+            <div class="car-body">
+              <span class="car-window window-left"></span>
+              <span class="car-window window-right"></span>
+              <span class="car-light"></span>
+            </div>
+            <span class="wheel wheel-left"></span>
+            <span class="wheel wheel-right"></span>
+          </div>
+          <div class="road"><span></span><span></span><span></span><span></span></div>
+        </div>
+      </section>
+
+      <section class="calculator-shell" aria-labelledby="calculator-title">
+        <div class="calculator-card">
+          <div class="card-heading">
+            <div>
+              <p class="step-label">Your latest tank</p>
+              <h2 id="calculator-title">Add your trip details</h2>
+            </div>
+            <div class="tiny-gauge" aria-hidden="true">
+              <span class="gauge-needle"></span>
+            </div>
+          </div>
+
+          <form id="fuel-form" novalidate>
+            <div class="field-grid">
+              <label class="field" for="distance">
+                <span class="field-label">Distance travelled</span>
+                <span class="input-wrap">
+                  <input
+                    id="distance"
+                    name="distance"
+                    type="number"
+                    inputmode="decimal"
+                    min="0.1"
+                    step="0.1"
+                    placeholder="620"
+                    required
+                  />
+                  <span class="unit">km</span>
+                </span>
+                <span class="field-hint">Since your last full tank</span>
+              </label>
+
+              <label class="field" for="fuel">
+                <span class="field-label">Fuel added</span>
+                <span class="input-wrap">
+                  <input
+                    id="fuel"
+                    name="fuel"
+                    type="number"
+                    inputmode="decimal"
+                    min="0.1"
+                    step="0.1"
+                    placeholder="48"
+                    required
+                  />
+                  <span class="unit">L</span>
+                </span>
+                <span class="field-hint">Litres needed to fill up</span>
+              </label>
+
+              <label class="field" for="tank-size">
+                <span class="field-label">Tank size</span>
+                <span class="input-wrap">
+                  <input
+                    id="tank-size"
+                    name="tankSize"
+                    type="number"
+                    inputmode="decimal"
+                    min="0.1"
+                    step="0.1"
+                    placeholder="55"
+                    required
+                  />
+                  <span class="unit">L</span>
+                </span>
+                <span class="field-hint">Your car's full capacity</span>
+              </label>
+            </div>
+
+            <p class="form-error" id="form-error" role="alert" aria-live="polite"></p>
+            <button type="submit">
+              Calculate my economy
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <aside class="result-card" id="result-card" aria-labelledby="result-title" aria-live="polite">
+          <div class="result-empty" id="result-empty">
+            <div class="fuel-drop" aria-hidden="true">
+              <svg viewBox="0 0 72 88">
+                <path d="M36 3S7 39 7 57a29 29 0 0 0 58 0C65 39 36 3 36 3Z" />
+                <path d="M24 61c2 8 8 12 16 13" />
+              </svg>
+            </div>
+            <p class="step-label">Ready when you are</p>
+            <h2 id="result-title">Your result will appear here</h2>
+            <p>Three numbers in. One useful answer out.</p>
+          </div>
+
+          <div class="result-content" id="result-content" hidden>
+            <p class="step-label">Your fuel economy</p>
+            <div class="primary-result">
+              <strong id="efficiency-result">0.0</strong>
+              <span>km/L</span>
+            </div>
+            <p class="result-message" id="result-message"></p>
+
+            <div class="range-block">
+              <div class="range-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M3 17h18M6 14l3-7h6l3 7M8 17v2m8-2v2" />
+                  <circle cx="8" cy="14" r="1" />
+                  <circle cx="16" cy="14" r="1" />
+                </svg>
+              </div>
+              <div>
+                <span>Estimated full-tank range</span>
+                <strong><span id="range-result">0</span> km</strong>
+              </div>
+            </div>
+
+            <button class="text-button" id="reset-button" type="button">
+              Calculate another tank
+            </button>
+          </div>
+        </aside>
+      </section>
+
+      <section class="how-it-works" aria-labelledby="how-title">
+        <p class="eyebrow"><span></span> Simple maths</p>
+        <h2 id="how-title">One fill-up tells you a lot.</h2>
+        <div class="steps">
+          <article>
+            <span class="step-number">01</span>
+            <h3>Fill the tank</h3>
+            <p>Reset your trip meter when you fill your car completely.</p>
+          </article>
+          <article>
+            <span class="step-number">02</span>
+            <h3>Drive normally</h3>
+            <p>Use the car as usual, then refill it completely next time.</p>
+          </article>
+          <article>
+            <span class="step-number">03</span>
+            <h3>Enter the numbers</h3>
+            <p>Divide kilometres driven by litres added. We handle that bit.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand footer-brand" href="#top">Tankful</a>
+      <p>Built for the next fill-up.</p>
+    </footer>
+  </body>
+</html>
